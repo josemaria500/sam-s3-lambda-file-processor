@@ -1,0 +1,15 @@
+{
+  "Records": [
+    {
+      "s3": {
+        "bucket": {
+          "name": "test-input-bucket"
+        },
+        "object": {
+          "key": "example.txt",
+          "size": 1234
+        }
+      }
+    }
+  ]
+}

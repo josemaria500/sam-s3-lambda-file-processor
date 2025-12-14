@@ -1,0 +1,39 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: SAM S3 Lambda File Processor
+
+Globals:
+  Function:
+    Timeout: 30
+    Runtime: python3.12
+    MemorySize: 128
+    Environment:
+      Variables:
+        OUTPUT_BUCKET: !Ref OutputBucket
+
+Resources:
+
+  FileProcessorFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: app.lambda_handler
+      CodeUri: src/file_processor/
+      Policies:
+        - S3WritePolicy:
+            BucketName: !Ref OutputBucket
+      Events:
+        FileUpload:
+          Type: S3
+          Properties:
+            Bucket: !Ref InputBucket
+            Events: s3:ObjectCreated:*
+
+  InputBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: sam-file-processor-input
+
+  OutputBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: sam-file-processor-output
