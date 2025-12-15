@@ -7,7 +7,6 @@ This project demonstrates:
 * **Serverless development with Python 3.12** 🐍
 * **Local testing** with **SAM CLI** and **Docker** 🐳
 * **Automatic deployment to AWS** with S3, Lambda, and IAM permissions ☁️
-* **Portfolio best practices**: clean code, local vs. cloud detection.
 
 ---
 
